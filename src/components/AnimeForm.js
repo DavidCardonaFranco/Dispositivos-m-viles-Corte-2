@@ -34,6 +34,8 @@ export const AnimeForm = ({
 
   };
 
+  const emptyFields = Object.entries(fields)
+
   if (emptyFields.length > 0) {
     console.log("Error: Hay campos sin diligenciar:", emptyFields.join(", "));
     return;

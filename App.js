@@ -73,7 +73,7 @@ export default function App() {
       ></UserForm>
 
       <Pressable onPress={() => {setModalAnimeForm(true)}} style = {styles.btnNewUser}>
-        <Text style = {styles.title}>Nuevo Libro</Text>
+        <Text style = {styles.title}>Nuevo ánime</Text>
       </Pressable>
       {
         dataArray.length === 0 ? (
