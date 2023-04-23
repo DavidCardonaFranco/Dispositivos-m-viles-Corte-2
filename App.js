@@ -12,12 +12,15 @@ import {
 import { User } from "./src/components/User";
 import { AnimeForm } from "./src/components/AnimeForm";
 import { Anime } from "./src/components/Anime";
+import UserInformation from "./src/components/UserInformation";
 
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalUserForm, setModalUserForm] = useState(false);
   const [modalAnimeForm, setModalAnimeForm] = useState(false);
   const [registeredUsers, setRegisteredUsers] = useState([]);
+  const [userInformationVisible, setUserInformationVisible] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
   const [user, setUser] = useState({});
 
   const [dataArray, setdataArray] = useState([]);
@@ -36,17 +39,19 @@ export default function App() {
     setUser(editUser[0]);
     console.log(editUser);
   };
-
-  const editanime = (id) => {
-    console.log("anime", id);
-    const editedanime = dataArray.filter((anime) => anime.id === id);
-    setAnime(editedanime[0]);
-    console.log(editedanime);
+  const deleteUser = (id) => {
+    const updatedUsers = registeredUsers.filter((user) => user.id !== id);
+    setRegisteredUsers(updatedUsers);
   };
 
   const deleteAnime = (id) => {
     const filteredDataArray = dataArray.filter((anime) => anime.id !== id);
     setdataArray(filteredDataArray);
+  };
+
+  const showUserInformation = (user) => {
+    setSelectedUser(user);
+    setUserInformationVisible(true);
   };
 
   return (
@@ -87,6 +92,8 @@ export default function App() {
                 setModalUserForm={setModalUserForm}
                 editUser={editUser}
                 user={user}
+                deleteUser={deleteUser}
+                showUserInformation={showUserInformation} 
               />
             );
           }}
@@ -142,6 +149,11 @@ export default function App() {
       <Modal animationType="slide" visible={modalVisible}>
         <Text>Desde Modal</Text>
       </Modal>
+      <UserInformation
+  user={selectedUser}
+  visible={userInformationVisible}
+  setVisible={setUserInformationVisible}
+/>
     </SafeAreaView>
   );
 }

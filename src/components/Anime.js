@@ -22,7 +22,7 @@ export const Anime = ({ item, setModalAnimeForm, editAnime, deleteAnime }) => {
           </Pressable>
           <Pressable
             style={[styles.btn, styles.btnDeleteOne]}
-            onPress={() => deleteAnime(id)} // Aquí llamas la función deleteAnime pasada como prop
+            onPress={() => deleteAnime(id)}
           >
             <Text style={styles.text}>Eliminar</Text>
           </Pressable>
